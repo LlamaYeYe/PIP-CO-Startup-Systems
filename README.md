@@ -36,4 +36,4 @@ Each startup uses one AVI animation and one WAV audio file.
 
 ## Notes
 
-This package is built from the hardware-tested V70 baseline. Vault Girl is preserved unchanged from V70, and YES MAN uses the accepted flat bright background version.
+Compatiable with PIP-CO-Idle-Framworks.

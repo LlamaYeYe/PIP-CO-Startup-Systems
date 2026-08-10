@@ -1,0 +1,4 @@
+1.2.0 (2026-08-10)
+- Rebuilt the current V70 hardware-tested baseline into the Pip-Boy.com modular assets format.
+- Core files install automatically; each startup animation/audio file is optional.
+- Preserves V70 Vault Girl unchanged and the accepted YES MAN flat bright background.

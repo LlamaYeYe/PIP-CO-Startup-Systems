@@ -4,24 +4,6 @@ A custom startup selector for The Wand Company Pip-Boy 3000.
 
 This public modular build preserves the hardware-tested V84 startup, menu, audio, and playback behavior while using the normal pip-boy.com metadata installation path for MISC registration.
 
-## Installation
-
-Install through pip-boy.com or the holotape registry.
-
-The website creates the device-side `.info` registration from `metadata.json`, allowing PIP-CO Startup Systems to appear under **Items > MISC**.
-
-The required **Core** installs:
-
-- `HOLO/STARTUP_ANIMATIONS/APP.JS`
-- `HOLO/STARTUP_ANIMATIONS/TITLE.BIN`
-- `HOLO/STARTUP_ANIMATIONS/SELECT.JSON`
-
-Startup media is optional. Each startup requires its matching **AVI + WAV pair**.
-
-The app checks which media files are installed and only displays startup options when both required files are present.
-
-`APP.JS` does not create or overwrite `APPINFO/*.info`. Device registration is handled by the website/installer using `metadata.json`.
-
 ## Startup Choices
 
 ### Special Bootups

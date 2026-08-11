@@ -1,4 +1,8 @@
-1.2.0 (2026-08-10)
-- Rebuilt the current V70 hardware-tested baseline into the Pip-Boy.com modular assets format.
-- Core files install automatically; each startup animation/audio file is optional.
-- Preserves V70 Vault Girl unchanged and the accepted YES MAN flat bright background.
+1.1.0 - 2026-08-11
+- Modular optional media support for pip-boy.com installs.
+- Added new startup assets including Enclave PIP-BOY.
+- Uses TITLE.BIN as the single title image format.
+- Removed runtime APPINFO self-registration; installation is metadata-driven.
+- Removed legacy global.__SA* / global.__startupAnimations* state and cleanup.
+- Replaced the global CRT-suppression flag with local holotape state.
+- Preserves the V84 hardware-tested startup playback and timing behavior.

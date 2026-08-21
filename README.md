@@ -1,46 +1,53 @@
-Description
+# PIP-CO Startup Systems
 
+A modular custom-startup holotape for The Wand Company Pip-Boy 3000. Select a startup sequence in the holotape, then the selected animation is used on the next Pip-Boy boot/wake.
 
-* Updates PIP-CO Startup Systems to v1.1.0 with modular optional startup-pack installation support.
+## Pip-Boy.com modular installation
 
-* Users can install only the startup animations they want. Each startup AVI contains its matching audio, and the holotape automatically shows only the startup options whose AVI is installed.
+The core installs automatically. Each startup AVI is optional, so users can install only the startup sequences they want. Audio is embedded in each AVI; there are no separate startup WAV dependencies. The holotape only shows startups whose AVI is installed.
 
-* The latest update also improves completion handling for the remade startup animations. Mister Handy, Vault Girl, Deathclaw, YES MAN, and The Minutemen now use videoStopped as their normal completion event, preventing unnecessary stop calls after playback has already completed. A generous hard failsafe remains for genuinely stuck playback.
+### Core files
 
-* Update Checklist
+- `HOLO/STARTUP_ANIMATIONS/APP.JS`
+- `HOLO/STARTUP_ANIMATIONS/SELECT.JSON`
+- `HOLO/STARTUP_ANIMATIONS/TITLE.BIN`
 
-* Added modular optional startup media support
-* Embedded matching startup audio directly into each AVI
-* Removed separate startup WAV dependencies
-* Added YES MAN
-* Added Mr. House
-* Added The Enclave
-* Added Enclave PIP-BOY startup
-* Added The Brotherhood of Steel
-* Added Mothman
-* Added The Minutemen
-* Preserved Mister Handy, Vault Girl, and Deathclaw
-* Added TITLE.BIN
-* Updated startup menu/core files
-* Updated metadata to use AVI-only storageOptional startup packs
-* Preserved the existing holotape ID and preview
-* Tested on the Wand Company Pip-Boy 3000
+### Optional startup sequences
 
-Cleanup Check
+- Mister Handy
+- Vault Girl
+- Deathclaw Vault Experiment
+- Enclave PIP-BOY
+- The Enclave
+- The Brotherhood of Steel
+- The Minutemen
+- Mothman
+- YES MAN
+- Mr. House
+- Classic Mr. House
+- Classic Mr. House Animated
+- Classic Mr. House Fully Animated
+- Dogmeat
 
-* App exits without requiring a reboot
-* App reopens normally after use
-* Startup media is only loaded when needed
-* Installed startup AVIs are detected dynamically
-* Missing optional startup packs are hidden from the startup menu
-* No separate startup WAV files are required
-* Startup audio plays from the installed AVI itself
-* Memory-conscious startup behavior is preserved
-* Existing startup selections remain compatible
-* No runtime APPINFO self-registration is used
-* No audioStop wrapper
-* No audioStartVar wrapper
-* No playSound wrapper
-* No protected-startup wrapper state
-* No heavy crash/memory logging
-* No re-open wrapper cleanup experiment
+## Controls
+
+- Left wheel: navigate
+- Left wheel press: select
+- `< Back`: return to Misc
+- NPC submenu: includes a scroll indicator when the list extends beyond the visible rows
+
+## Runtime / compatibility notes
+
+Version 1.1.0 uses a small persistent startup service separated from the holotape menu/UI. This prevents the startup hook from retaining the full menu, title, and scroller closure after the holotape closes. The change was made after repeated hardware testing exposed `CALLBACK`, `LOW_MEMORY`, and `MEMORY` failures on Pip-Boy OS 1.1.6.
+
+The hard-failsafe timer now begins after `Pip.videoStart()` succeeds, so firmware/pre-play delays do not consume the startup's playback window. Event-ended startup videos continue to use `videoStopped`; timer-ended startups use their normal fade path.
+
+`ENCLAVE_PIPBOY.AVI` uses the clean rebuilt media stream that resolved an audio-only/black-video startup case during 1.1.6 testing. Other startup media remains on its previously working encoding.
+
+Runtime APPINFO self-registration and diagnostic PIP-CO logging are not used in the repository/modular build. Registration is handled by `metadata.json`.
+
+## Tested hardware
+
+- The Wand Company Pip-Boy 3000
+- Pip-Boy OS 1.1.6 / firmware build 2v29.361
+- Repeated startup selection, holotape reopen, and boot-cycle testing across all included startup entries
